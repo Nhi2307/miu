@@ -50,3 +50,12 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+/.vs/BaiNhom/FileContentIndex/764f557f-c95c-44a3-8b55-b7f9dc90ada7.vsidx
+*.db
+/.vs/BaiNhom/v17/Browse.VC.db-shm
+/.vs/BaiNhom/v17/Browse.VC.db-wal
+/.vs/BaiNhom/v17/Browse.VC.opendb
+*.vsidx
+*.ipch
+*.wsuo
+/.vs
