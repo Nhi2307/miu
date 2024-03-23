@@ -82,23 +82,51 @@ int insertTail(SList& sl, SNode* p)
 	}
 	return 1;//thuc hien thanh cong
 }
+// Chen phan tu co gia tri x vao truoc phan tu co gia tri y
+void chen_phan_tu(SList& sl, int x, int y) {
+	SNode* newNode = createSNode(x);
+	if (isEmpty(sl)) {
+		insertTail(sl, newNode);
+	}
+	else if (sl.Head->Info == y) {
+		newNode->Next = sl.Head;
+		sl.Head = newNode;
+	}
+	else {
+		SNode* prev = sl.Head;
+		SNode* current = sl.Head->Next;
+		while (current != NULL && current->Info != y) {
+			prev = current;
+			current = current->Next;
+		}
+		if (current != NULL) {
+			// Tim thay phan tu y, chen x vào truoc y
+			prev->Next = newNode;
+			newNode->Next = current;
+		}
+		else {
+			printf("Khong tim thay phan tu co gia tri y trong danh sach!\n");
+		}
+	}
+}
 void showMenu()
 {
 	printf("\n***********************************");
 	printf("\n               MENU                ");
-	printf("\n1.them nut vao cuoi danh sach.");
-	printf("\n9.duyet danh sach");
-	printf("\n0.thoat.");
+	printf("\n1.Them nut vao cuoi danh sach.");
+	printf("\n2. Chen phan tu vao truoc mot phan tu.");
+	printf("\n9.Duyet danh sach");
+	printf("\n0.Thoat.");
 	printf("\n**************************");
 }
 int main()
 {
 	SList sl;
 	initSList(sl);
-
 	int choice;
 	SNode* newNode;
 	SNode* searchNode;
+	int x, y;
 	do
 	{
 		showMenu();
@@ -113,17 +141,25 @@ int main()
 			newNode = createSNode(m);
 			insertTail(sl, newNode);
 			break;
+		case 2:
+			if (isEmpty(sl)) {
+				printf("Danh sach rong! Vui long nhap danh sach truoc khi chen.\n");
+			}
+			else {
+				printf("Nhap gia tri can chen: ");
+				scanf_s("%d", &x);
+				printf("Nhap gia tri cua phan tu truoc do: ");
+				scanf_s("%d", &y);
+				chen_phan_tu(sl, x, y);
+			}
 		case 9:
 			showSList(sl);
 			break;
 		case 0:
-			printf("thoat");
+			printf("Thoat chuong trinh");
 		default:
-			printf("k hop le");
+			printf("Lua chon khong hop le!");
 		}
 	} while (choice != 0);
 	return 0;
 }
-//câu b
-//test
-//test1
