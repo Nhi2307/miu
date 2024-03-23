@@ -82,7 +82,7 @@ int insertTail(SList& sl, SNode* p)
 	}
 	return 1;//thuc hien thanh cong
 }
-// Hàm ?? chèn ph?n t? x vào tr??c ph?n t? y trong m?ng arr
+// HÃ m ?? chÃ¨n ph?n t? x vÃ o tr??c ph?n t? y trong m?ng arr
 void chenTruoc(SList& sl, ItemType x, ItemType y) {
 	SNode* newNode = createSNode(x);
 	if (isEmpty(sl)) {
@@ -100,18 +100,18 @@ void chenTruoc(SList& sl, ItemType x, ItemType y) {
 	}
 
 	if (current == NULL) {
-		// Không tìm th?y giá tr? y trong danh sách
+		// KhÃ´ng tÃ¬m th?y giÃ¡ tr? y trong danh sÃ¡ch
 		printf("Khong tim thay phan tu co gia tri y trong danh sach.");
 		delete newNode;
 		return;
 	}
 	if (prev == NULL) {
-		// Nút ch?a giá tr? y là nút ??u tiên c?a danh sách
+		// NÃºt ch?a giÃ¡ tr? y lÃ  nÃºt ??u tiÃªn c?a danh sÃ¡ch
 		newNode->Next = sl.Head;
 		sl.Head = newNode;
 	}
 	else {
-		// Chèn newNode vào tr??c nút ch?a giá tr? y
+		// ChÃ¨n newNode vÃ o tr??c nÃºt ch?a giÃ¡ tr? y
 		prev->Next = newNode;
 		newNode->Next = current;
 	}
@@ -166,6 +166,3 @@ int main()
 	} while (choice != 0);
 	return 0;
 }
-//câu b
-//test
-//test1
