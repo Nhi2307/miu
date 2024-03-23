@@ -82,46 +82,90 @@ int insertTail(SList& sl, SNode* p)
 	}
 	return 1;//thuc hien thanh cong
 }
+// Hàm ?? chèn ph?n t? x vào tr??c ph?n t? y trong m?ng arr
+void chenTruoc(SList& sl, ItemType x, ItemType y) {
+	SNode* newNode = createSNode(x);
+	if (isEmpty(sl)) {
+		sl.Head = newNode;
+		sl.Tail = newNode;
+		return;
+	}
+
+	SNode* prev = NULL;
+	SNode* current = sl.Head;
+
+	while (current != NULL && current->Info != y) {
+		prev = current;
+		current = current->Next;
+	}
+
+	if (current == NULL) {
+		// Không tìm th?y giá tr? y trong danh sách
+		printf("Khong tim thay phan tu co gia tri y trong danh sach.");
+		delete newNode;
+		return;
+	}
+	if (prev == NULL) {
+		// Nút ch?a giá tr? y là nút ??u tiên c?a danh sách
+		newNode->Next = sl.Head;
+		sl.Head = newNode;
+	}
+	else {
+		// Chèn newNode vào tr??c nút ch?a giá tr? y
+		prev->Next = newNode;
+		newNode->Next = current;
+	}
+}
 void showMenu()
 {
 	printf("\n***********************************");
 	printf("\n               MENU                ");
-	printf("\n1.them nut vao cuoi danh sach.");
-	printf("\n9.duyet danh sach");
-	printf("\n0.thoat.");
+	printf("\n1.Them nut vao cuoi danh sach.");
+	printf("\n2. Chen truoc phan tu");
+	printf("\n9.Duyet danh sach");
+	printf("\n0.Thoat chuong trinh.");
 	printf("\n**************************");
 }
 int main()
 {
 	SList sl;
 	initSList(sl);
-
 	int choice;
 	SNode* newNode;
 	SNode* searchNode;
+	ItemType x, y;
 	do
 	{
 		showMenu();
-		printf("\nnhap lua chon cua ban:");
+		printf("\nNhap lua chon cua ban:");
 		scanf_s("%d", &choice);
 		switch (choice)
 		{
 		case 1:
 			int m;
-			printf("nhap so ban muon nhap:");
+			printf("Nhap so ban muon nhap:");
 			scanf_s("%d", &m);
 			newNode = createSNode(m);
 			insertTail(sl, newNode);
+			break;
+		case 2:
+			printf("Nhap gia tri can chen (x): ");
+			scanf_s("%d", &x);
+			printf("Nhap gia tri muc tieu (y): ");
+			scanf_s("%d", &y);
+			chenTruoc(sl, x, y);
 			break;
 		case 9:
 			showSList(sl);
 			break;
 		case 0:
-			printf("thoat");
+			printf("Thoat chuong trinh.");
 		default:
-			printf("k hop le");
+			printf("Lua cho khong hop le !");
 		}
 	} while (choice != 0);
 	return 0;
 }
 //câu b
+//test
+//test1
