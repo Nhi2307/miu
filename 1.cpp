@@ -82,7 +82,7 @@ int insertTail(SList& sl, SNode* p)
 	}
 	return 1;//thuc hien thanh cong
 }
-// Chen phan tu co gia tri x vao truoc phan tu co gia tri y
+// 2. Chen phan tu co gia tri x vao truoc phan tu co gia tri y
 void chen_phan_tu(SList& sl, int x, int y) {
 	SNode* newNode = createSNode(x);
 	if (isEmpty(sl)) {
@@ -109,12 +109,33 @@ void chen_phan_tu(SList& sl, int x, int y) {
 		}
 	}
 }
+// Kiem tra xem mot so co phai so nguyen to hay không
+int isPrime(int n) {
+	if (n <= 1) return 0; // Khong phai so nguyen to
+	for (int i = 2; i * i <= n; i++) {
+		if (n % i == 0) return 0; // Khong phai so nguyen to
+	}
+	return 1; // La so nguyen to
+}
+
+// 4.dem so luong so nguyen to trong dslk
+int countPrimeNumbers(SList sl) {
+	int count = 0;
+	for (SNode* p = sl.Head; p != NULL; p = p->Next) {
+		if (isPrime(p->Info)) {
+			count++;
+		}
+	}
+	return count;
+}
+
 void showMenu()
 {
 	printf("\n***********************************");
 	printf("\n               MENU                ");
 	printf("\n1.Them nut vao cuoi danh sach.");
-	printf("\n2. Chen phan tu vao truoc mot phan tu.");
+	printf("\n2.Chen phan tu vao truoc mot phan tu.");
+	printf("\n4.Cho biet trong dslk co bao nhieu so nguyen to.");
 	printf("\n9.Duyet danh sach");
 	printf("\n0.Thoat.");
 	printf("\n**************************");
@@ -152,6 +173,11 @@ int main()
 				scanf_s("%d", &y);
 				chen_phan_tu(sl, x, y);
 			}
+		case 4:
+			showSList(sl);
+			printf("\nSo luong so nguyen to trong danh sach la: %d", countPrimeNumbers(sl));
+			break;
+
 		case 9:
 			showSList(sl);
 			break;
