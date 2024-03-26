@@ -173,6 +173,7 @@ int main()
 				scanf_s("%d", &y);
 				chen_phan_tu(sl, x, y);
 			}
+			break;
 		case 4:
 			showSList(sl);
 			printf("\nSo luong so nguyen to trong danh sach la: %d", countPrimeNumbers(sl));
