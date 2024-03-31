@@ -28,7 +28,27 @@ StackNode* createStackNode(ItemType x)
 	p->Next = NULL;
 	return p;
 }
+//3. Khoi tao Stack
+void intiStack(Stack& s)
+{
+	//inititalize Stack
+	s.Tp = NULL;
+}
+//4. Kiem tra Stack rong
+int isEmpty(Stack s) //Stack co rong hay khong
+{
+	if (s.Tp == NULL) //Neu Stack rong
+		return 1;
+	else
+		return 0; //Neu Stack khong rong
+}
 void main()
 {
 	ItemType x;
+	Stack myStack;
+	intiStack(myStack);
+	if (isEmpty(myStack))
+		printf("Stack la rong\n");
+	else
+		printf("Stack khong rong\n");
 }
